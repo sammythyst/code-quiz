@@ -12,17 +12,50 @@ var timerCount;
 // quiz questions
 let questions = [
     {
-        question: "how are you today?",
-        choiceA: "good",
-        choiceB: "fine",
-        choiceC: "well",
-        choiceD: "meh",
+        question: "Commonly used data types DO NOT include:",
+        choiceA: "strings",
+        choiceB: "booleans",
+        choiceC: "alerts",
+        choiceD: "numbers",
         correct: "C"
+    },
+    {
+        question: "The condition in an if/else statement is enclosed with ________.",
+        choiceA: "quotes",
+        choiceB: "curly brackets",
+        choiceC: "parenthesis",
+        choiceD: "square brackets",
+        correct: "B"
+    },
+    {
+        question: "Arrays in JavaScript can be used to store ________.",
+        choiceA: "numbers and strings",
+        choiceB: "other arrays",
+        choiceC: "booleans",
+        choiceD: "all of the above",
+        correct: "D"
+    },
+    {
+        question: "String values must be enclosed within ________ when being assigned to variables.",
+        choiceA: "commas",
+        choiceB: "curly brackets",
+        choiceC: "quotes",
+        choiceD: "parenthesis",
+        correct: "C"
+    },
+    {
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        choiceA: "JavaScript",
+        choiceB: "terminal/bash",
+        choiceC: "for loops",
+        choiceD: "console.log",
+        correct: "D"
     }
 ]
 
-// variables
+// after initialization variables
 var runningQuestion = 0;
+var lastQuestion = questions.length-1;
 
 
 // render quiz 
@@ -43,7 +76,7 @@ function startQuiz() {
     intro.style.display = "none";
     quiz.style.display = "block";
     renderQuestion();
-    timerCount = 10;
+    timerCount = 75;
     start.disabled = true;
     startTimer()
 }
@@ -55,8 +88,62 @@ function startTimer() {
         timerCount--;
         timerEl.textContent = "Time: " + timerCount;
       
-        if (timerCount === 0) {
+        if (timerCount < 0) {
             clearInterval(timer);
-        }
+            timerEl.textContent = "Time's up!";
+            console.log(timerCount);
+            // gameOver();
+        } 
     }, 1000);
+    
+}
+
+// end quiz if timer reaches 0
+// function gameOver() {
+
+// }
+
+
+// check answer
+function checkAnswer(answer){
+    if(answer == questions[runningQuestion].correct){
+        answerIsCorrect();
+    }else{
+        answerIsWrong();
+    }
+    count = 0;
+    if(runningQuestion < lastQuestion) {
+        runningQuestion++;
+        renderQuestion();
+    }else{
+        //end quiz, stop timer, and show score
+        clearInterval(timer);
+        scoreRender();
+    }
+}
+// answer is correct
+function answerIsCorrect(){
+    var correct = "Correct!";
+    document.getElementById("correct").innerHTML = correct;
+    setTimeout(function(){
+        document.getElementById("correct").innerHTML = "";
+    }, 1000);
+}
+
+// answer is wrong
+function answerIsWrong(){
+    timerCount = timerCount - 10;
+    var wrong = "Wrong!";
+    document.getElementById("wrong").innerHTML = wrong;
+    setTimeout(function(){
+        document.getElementById("wrong").innerHTML = "";
+    }, 1000);
+}
+
+// rander score
+function scoreRender() {
+    quiz.style.display = "none";
+    endquiz.style.display = "block";
+    var score = timerCount;
+    document.getElementById("newscore").innerHTML = "Your final score is: " + score;
 }

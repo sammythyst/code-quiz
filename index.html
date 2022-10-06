@@ -10,7 +10,8 @@
 <body>
     <!-- High Scores and Timer -->
     <header>
-        <p id="countdown">Time: 10</p>
+        <p>View high scores</p>
+        <p id="countdown">Time: 75</p>
     </header>
 
     <!-- quiz container -->
@@ -29,6 +30,12 @@
 				<div class="choice" id="C" onclick="checkAnswer('C')"></div>
 				<div class="choice" id="D" onclick="checkAnswer('D')"></div>
 			</div>
+        <h3 id="correct" class="answer"></h3>
+        <h3 id="wrong" class="answer"></h3>
+    </section>
+
+    <section id="endquiz" class="container" style="display:none;">
+        <h2 id="newscore"></h2>
     </section>
     
     <script src="assets/js/script.js">

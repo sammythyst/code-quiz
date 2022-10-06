@@ -1,20 +1,51 @@
+/* base styles */
+
+:root {
+    --button: rgb(95, 145, 209);
+    --text: white;
+}
+
 body {
     font-size: x-large;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 30px;
+}
+
 button {
-    background-color: rgb(92, 142, 207);
-    color: white;
+    background-color: var(--button);
+    color: var(--text);
     border: none;
     border-radius: 20px;
     padding: 1em;
     font-size: large;
 }
 
+
+/* class styles */ 
+
 .container {
-    border: 2px solid black;
-    padding: 5em 25em;
+    margin: 5% 30%;
 }
+
+.choice {
+    border-radius: 8px;
+    background-color: var(--button);
+    color: var(--text);
+    width: 200px;
+    padding: .25em;
+    margin: .5em;
+}
+
+.answer {
+    color: gray;
+}
+
+
+/* id styles */
 
 #intro {
     text-align: center;
@@ -24,9 +55,11 @@ button {
     margin-top: 1.5em;
 }
 
-.choice {
-    border: 2px solid black;
-    width: 200px;
-    padding: .25em;
-    margin: .5em;
+
+/* responsive */
+
+@media (max-width: 1000px) {
+    .container {
+        margin: 8% 25%;
+    }
 }
