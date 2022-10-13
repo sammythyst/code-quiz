@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 <body>
     <!-- High Scores and Timer -->
     <header>
-        <p>View high scores</p>
+        <p id="viewScores" onclick="renderScores()">View high scores</p>
         <p id="countdown">Time: 75</p>
     </header>
 
@@ -36,9 +36,19 @@
 
     <section id="endquiz" class="container" style="display:none;">
         <h2 id="newscore"></h2>
+        <label for="initials">Enter initials:</label>
+        <input type="text" id="initials" name="initials">
+        <input type="submit" id="submitScore" value="Submit">
+    </section>
+
+    <section id="highScores" class="container" style="display:none;">
+        <p id="backhome" style="display: flex; justify-content: right;" onclick="backHome()">Back to Home</p>
+        <h2>High Scores:</h2>
+            <p id="userInitials"></p> - 
+            <p id="userScores"></p>      
     </section>
     
-    <script src="assets/js/script.js">
+    <script src="./assets/js/script.js">
     </script>
 </body>
 </html>

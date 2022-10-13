@@ -55,6 +55,15 @@ button {
     margin-top: 1.5em;
 }
 
+#highScores p {
+    display: inline;
+}
+
+#viewScores:hover, #backhome:hover {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 /* responsive */
 

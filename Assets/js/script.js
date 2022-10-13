@@ -5,6 +5,9 @@ var choiceA = document.getElementById("A");
 var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
+var submitBtn = document.querySelector("#submitScore");
+var userInitials = document.getElementById("userInitials");
+var userScores = document.getElementById("userScores");
 var timer; 
 var timerCount;
 
@@ -53,6 +56,8 @@ let questions = [
     }
 ]
 
+
+
 // after initialization variables
 var runningQuestion = 0;
 var lastQuestion = questions.length-1;
@@ -88,20 +93,13 @@ function startTimer() {
         timerCount--;
         timerEl.textContent = "Time: " + timerCount;
       
-        if (timerCount < 0) {
+        if (timerCount <= 0) {
             clearInterval(timer);
             timerEl.textContent = "Time's up!";
-            console.log(timerCount);
-            // gameOver();
-        } 
-    }, 1000);
-    
+            scoreRender();
+        }
+    }, 1000);  
 }
-
-// end quiz if timer reaches 0
-// function gameOver() {
-
-// }
 
 
 // check answer
@@ -121,6 +119,7 @@ function checkAnswer(answer){
         scoreRender();
     }
 }
+
 // answer is correct
 function answerIsCorrect(){
     var correct = "Correct!";
@@ -140,10 +139,58 @@ function answerIsWrong(){
     }, 1000);
 }
 
-// rander score
+// render score
 function scoreRender() {
     quiz.style.display = "none";
     endquiz.style.display = "block";
     var score = timerCount;
     document.getElementById("newscore").innerHTML = "Your final score is: " + score;
+}
+
+
+// local storage for scores
+submitBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    if (initials === "") {
+        alert("Please enter your initials");
+    } else {
+        alert("Score successfully added");
+        renderScores();
+    }
+})
+
+// view all high scores on local storage
+function highScore(){
+    var initials = localStorage.getItem("initials");
+    var score = localStorage.getItem("score");
+
+    userInitials.textContent = initials;
+    userScores.textContent = score;
+}
+
+
+
+function renderScores() {
+    intro.style.display = "none";
+    quiz.style.display = "none";
+    endquiz.style.display = "none";
+    highScores.style.display = "block";
+
+    var initials = document.querySelector("#initials").value;
+    var score = timerCount;
+
+    document.getElementById("userInitials").innerHTML = initials;
+    document.getElementById("userScores").innerHTML = score;
+    localStorage.setItem("initials", initials);
+    localStorage.setItem("score", score);
+    highScore();
+}
+
+// back to home from high scores screen
+function backHome() {
+    // intro.style.display = "block";
+    // highScores.style.display = "none";
+    // renderQuestion();
+    location.reload();
 }
