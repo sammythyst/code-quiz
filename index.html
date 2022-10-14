@@ -10,7 +10,7 @@
 <body>
     <!-- High Scores and Timer -->
     <header>
-        <p id="viewScores" onclick="renderScores()">View high scores</p>
+        <p id="viewScores">View high scores</p>
         <p id="countdown">Time: 75</p>
     </header>
 
@@ -21,7 +21,7 @@
         <button type="button" id="startQuiz">Start Quiz</button>
     </section>
 
-
+    <!--Quiz questions displayed individually-->
     <section id="quiz" class="container" style="display:none;">
         <h2 id="question"></h2>
 			<div id="choices">
@@ -34,6 +34,7 @@
         <h3 id="wrong" class="answer"></h3>
     </section>
 
+    <!--End quiz showing user's score, prompting for initials-->
     <section id="endquiz" class="container" style="display:none;">
         <h2 id="newscore"></h2>
         <label for="initials">Enter initials:</label>
@@ -41,8 +42,9 @@
         <input type="submit" id="submitScore" value="Submit">
     </section>
 
+    <!--Leaderboard showing localStorage high scores-->
     <section id="highScores" class="container" style="display:none;">
-        <p id="backhome" style="display: flex; justify-content: right;" onclick="backHome()">Back to Home</p>
+        <p id="backhome" style="display: flex; justify-content: right;">Back to Home</p>
         <h2>High Scores:</h2>
             <p id="userInitials"></p> - 
             <p id="userScores"></p>      

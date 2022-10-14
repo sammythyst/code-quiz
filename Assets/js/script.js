@@ -63,6 +63,12 @@ var runningQuestion = 0;
 var lastQuestion = questions.length-1;
 
 
+// event listeners
+start.addEventListener("click", startQuiz);
+viewScores.addEventListener("click", renderScores);
+backhome.addEventListener("click", backHome);
+
+
 // render quiz 
 function renderQuestion() {
     let q = questions[runningQuestion];
@@ -74,7 +80,6 @@ function renderQuestion() {
 	choiceD.innerHTML = q.choiceD;
 }
 
-start.addEventListener("click", startQuiz);
 
 // start quiz
 function startQuiz() {
@@ -148,11 +153,11 @@ function scoreRender() {
 }
 
 
-// local storage for scores
+// adding new scores
 submitBtn.addEventListener("click", function(event) {
     event.preventDefault();
 
-    if (initials === "") {
+    if (document.getElementById("initials").value.length === 0) {
         alert("Please enter your initials");
     } else {
         alert("Score successfully added");
@@ -162,13 +167,8 @@ submitBtn.addEventListener("click", function(event) {
 
 // view all high scores on local storage
 function highScore(){
-    var initials = localStorage.getItem("initials");
-    var score = localStorage.getItem("score");
-
-    userInitials.textContent = initials;
-    userScores.textContent = score;
+    return JSON.stringify(localStorage);
 }
-
 
 
 function renderScores() {
@@ -179,18 +179,16 @@ function renderScores() {
 
     var initials = document.querySelector("#initials").value;
     var score = timerCount;
-
+    
     document.getElementById("userInitials").innerHTML = initials;
     document.getElementById("userScores").innerHTML = score;
     localStorage.setItem("initials", initials);
     localStorage.setItem("score", score);
+    console.log(localStorage);
     highScore();
 }
 
 // back to home from high scores screen
-function backHome() {
-    // intro.style.display = "block";
-    // highScores.style.display = "none";
-    // renderQuestion();
+function backHome(){
     location.reload();
 }
