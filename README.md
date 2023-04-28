@@ -2,7 +2,7 @@
 Web APIs Challenge 4
 
 Full site available at: https://sammythyst.github.io/code-quiz/
-![Screenshot of project's home page](./assets/project%20screenshot.png)
+![./assets/project%20screenshot.png](Screenshot of project's homepage)
 
 
 ## Description
